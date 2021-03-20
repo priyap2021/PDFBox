@@ -9,29 +9,21 @@ public class Encryption {
 
     public static void main(String[] args)throws IOException {
 
-        //Loading an existing PDF document
+        ///Loading an existing file, and access the permission
         File file = new File("C://Test.pdf");
         PDDocument document = PDDocument.load(file);
-
-        //Creating access permission object
         AccessPermission permission = new AccessPermission();
-
-        //Creating StandardProtectionPolicy object
         StandardProtectionPolicy key = new StandardProtectionPolicy("1234", "wxyz", permission);
 
-        //Setting the length of the encryption key
+        ///Setting the length of the encryption key
         key.setEncryptionKeyLength(128);
-
-        //Setting the access permissions
+        ///Setting the access permissions
         key.setPermissions(permission);
-
-        //Protecting the document
         document.protect(key);
 
+        System.out.println("************************");
         System.out.println("PDF Document encrypted!!!!.");
-
-        //Saving the document
-       // document.save("C://Test.pdf");
+        System.out.println("*************************");
         //Closing the document
         document.close();
     }
